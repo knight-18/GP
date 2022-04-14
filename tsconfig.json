@@ -1,16 +1,17 @@
 {
   "compilerOptions": {
     "baseUrl": "./",
-    // "paths": {
-    //   "@interfaces/*": ["./src/interfaces/*"],
-    //   "@errors/*": ["./src/globals/errors/*"],
-    //   "@responses/*": ["./src/globals/responses/*"],
-    //   "@routes/*": ["./src/routes/*"],
-    //   "@globals/*": ["./src/globals/*"],
-    //   "@controllers/*": ["./src/controllers/*"],
-    //   "@utils/*": ["./src/utils/*"],
-    //   "@middlewares/*": ["./src/middlewares/*"]
-    // },
+    "paths": {
+      "@interfaces/*": ["./src/globals/interfaces/*"],
+      "@repo-types/*": ["./src/globals/types/*"],
+      "@errors/*": ["./src/globals/errors/*"],
+      "@success/*": ["./src/globals/success/*"],
+      "@routes/*": ["./src/routes/*"],
+      "@globals/*": ["./src/globals/*"],
+      "@controllers/*": ["./src/controllers/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@middlewares/*": ["./src/middlewares/*"]
+    },
 
     /* Projects */
     "incremental": true /* Enable incremental compilation */,
