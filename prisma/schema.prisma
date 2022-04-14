@@ -9,3 +9,40 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+
+  id        Int      @id @default(autoincrement())
+  name      String
+  scholarId Int      @unique
+  email     String   @unique
+  password  String
+  dob       DateTime
+  img       String
+  branch    Branch
+  role      Role
+  verified  Boolean  @default(false)
+  otpValue  String
+  otpExpiry DateTime
+
+}
+
+enum Branch {
+
+  CSE
+  ECE
+  EIE
+  EE
+  ME
+  CE
+
+}
+
+enum Role {
+
+  OWNER
+  MODERATOR
+  MENTOR
+  MENTEE
+
+}
