@@ -1,8 +1,8 @@
 import { Request } from "express";
 
-import { sendMail } from "@utils/mailer.js";
-import { newHashString } from "@utils/string.js";
-import { hash } from "@utils/hash.js";
+import { sendMail } from "@utils/mailer";
+import { newHashString } from "@utils/string";
+import { hash } from "@utils/hash";
 import { OTP_AGE } from "@globals/constants";
 
 /**

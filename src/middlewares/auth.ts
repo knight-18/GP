@@ -1,5 +1,6 @@
-import { ErrorRequestHandler } from "express";
+import { ErrorRequestHandler, NextFunction, Request, Response } from "express";
 import { error } from "@errors/error";
+import { userAlreadyLoggedIn, userNotLoggedIn } from "@errors/auth";
 
 /**
  * @description Catch the errors of passport
@@ -13,4 +14,23 @@ const loginErrors: ErrorRequestHandler = async (err, _, res, next) => {
   }
 };
 
-export { loginErrors };
+/**
+ * @description Checks if user is logged in
+ */
+function isLoggedIn(req: Request, res: Response, next: NextFunction) {
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    res.json(userNotLoggedIn);
+  }
+}
+
+function isNotLoggedIn(req: Request, res: Response, next: NextFunction) {
+  if (!req.isAuthenticated) {
+    next();
+  } else {
+    res.json(userAlreadyLoggedIn);
+  }
+}
+
+export { loginErrors, isLoggedIn, isNotLoggedIn };
