@@ -18,6 +18,10 @@ async function signup(req: Request, res: Response) {
       return res.json(userExists);
     }
 
+    if ((await prisma.user.count({ where: { scholarId } })) !== 0) {
+      return res.json(userExists);
+    }
+
     // For emails of the form abcde@fgh.ij.kl
     const emailValidation = /[0-9A-Za-z._]+@[A-Za-z]{2,}(\.[0-9A-Za-z]{2,})+/;
 

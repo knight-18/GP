@@ -15,13 +15,24 @@ function initializePassport() {
       {
         // Changing default username-password form field
         // values of passport
-        usernameField: "email",
+        usernameField: "identifier",
         passwordField: "password",
         session: true,
       },
-      async (email, password, done) => {
+      async (identifier, password, done) => {
+        const scholarId = parseInt(identifier);
+
         const user = await prisma.user.findFirst({
-          where: { email },
+          where: {
+            OR: [
+              {
+                email: identifier,
+              },
+              {
+                scholarId: scholarId ? scholarId : 0,
+              },
+            ],
+          },
         });
 
         // User Not Found
