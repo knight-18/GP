@@ -10,10 +10,11 @@ import { permissionLevel } from "@utils/permissionLevel";
 import { Request, Response } from "express";
 import { permissionLevelUpdated } from "@success/auth";
 import { ROLES } from "@globals/constants";
+import { elevatePermissions } from "@interfaces/auth";
 
 async function updatePermission(req: Request, res: Response) {
   try {
-    const { email, newLevel } = req.body as any;
+    const { email, newLevel } = req.body as elevatePermissions;
 
     const { role: granterRole } = req.user as User;
 
@@ -24,8 +25,8 @@ async function updatePermission(req: Request, res: Response) {
 
     // Check if such level is high enough
     if (
-      permissionLevel(newLevel) >= permissionLevel(granterRole) &&
-      permissionLevel(granterRole) !== ROLES.length - 1
+      permissionLevel(granterRole) !== ROLES.length - 1 &&
+      permissionLevel(newLevel) >= permissionLevel(granterRole)
     ) {
       return res.json(unauthorized);
     }

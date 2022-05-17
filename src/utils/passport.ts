@@ -42,7 +42,6 @@ function initializePassport() {
 
         // Wrong Password
         if (!(await bcrypt.compare(password, user.password))) {
-          console.log(user.password);
           return done("Wrong Password", false);
         }
 
