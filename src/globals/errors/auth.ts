@@ -8,6 +8,8 @@ const insecurePassword = error(
 );
 const userNotLoggedIn = error("User not logged in.");
 const userAlreadyLoggedIn = error("User already logged in.");
+const unauthorized = error("Unauthorized action.");
+const incorrectPermissionLevel = error("Permission Level does not exists");
 
 export {
   userExists,
@@ -16,4 +18,6 @@ export {
   insecurePassword,
   userNotLoggedIn,
   userAlreadyLoggedIn,
+  unauthorized,
+  incorrectPermissionLevel,
 };
