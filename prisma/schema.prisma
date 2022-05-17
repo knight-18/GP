@@ -25,6 +25,54 @@ model User {
   otpValue  String
   otpExpiry DateTime
 
+  articles Article[]
+  comments Comment[]
+}
+
+model Article {
+  id         Int        @id @default(autoincrement())
+  title      String
+  body       String
+  tags       String[]
+  type       Type
+  visibility Visibility @default(PUBLIC)
+  score      Int        @default(0)
+
+  author   User @relation(fields: [authorId], references: [id])
+  authorId Int
+
+  comments Comment[]
+
+  votes ArticleVote[]
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  body      String
+  createdAt DateTime @default(now())
+  score     Int      @default(0)
+
+  author   User @relation(fields: [authorId], references: [id])
+  authorId Int
+
+  parentId Int
+  parent   Article @relation(fields: [parentId], references: [id])
+
+  votes CommentVote[]
+}
+
+model ArticleVote {
+  id Int @id @default(autoincrement())
+
+  articleId Int
+  article   Article @relation(fields: [articleId], references: [id])
+}
+
+model CommentVote {
+  id Int @id @default(autoincrement())
+
+  commentId Int
+  comment   Comment @relation(fields: [commentId], references: [id])
 }
 
 enum Branch {
@@ -44,5 +92,19 @@ enum Role {
   MODERATOR
   MENTOR
   MENTEE
+
+}
+
+enum Visibility {
+
+  PUBLIC
+  PRIVATE // Mentors only
+
+}
+
+enum Type {
+
+  QNA
+  ARTICLE
 
 }
