@@ -13,6 +13,7 @@ async function signup(req: Request, res: Response) {
     const { name, scholarId, email, password, dob, branch } =
       req.body as signUpBody;
 
+    // Check For User
     if ((await prisma.user.count({ where: { email } })) !== 0) {
       return res.json(userExists);
     }
@@ -24,7 +25,7 @@ async function signup(req: Request, res: Response) {
       return res.json(improperEmail);
     }
 
-    //Lookahead for 1 digit, 1 special character and 1 capital character.
+    // Lookahead for 1 digit, 1 special character and 1 capital character.
     const passwordValidation =
       /(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[!@#$%^&*()_+=[\]\\|<>,.?/:;"'])[A-Za-z0-9!@#$%^&*()_+\-=[\]\\|<>,.?/:;"']{8,20}/;
 
@@ -42,7 +43,7 @@ async function signup(req: Request, res: Response) {
         dob: new Date(dob),
         img: defaultProfilePic(name),
         branch,
-        otpValue: value!,
+        otpValue: await hash(value),
         otpExpiry: expiry,
         role: "MENTEE",
       },

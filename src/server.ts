@@ -19,6 +19,7 @@ import { initializePassport } from "@utils/passport";
 //------------------------- ROUTERS -------------------------
 
 import authRouter from "@routes/auth";
+import otpRouter from "@routes/otp";
 
 //------------------------- MIDDLEWARES -------------------------
 
@@ -50,6 +51,7 @@ app
 //------------------------- ROUTES -------------------------
 
 app.use(`${ROOT}/auth`, authRouter);
+app.use(`${ROOT}/otp`, otpRouter);
 
 //------------------------- APP -------------------------
 
