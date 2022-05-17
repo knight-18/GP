@@ -8,15 +8,10 @@ import bcrypt from "bcrypt";
  * @returns The hashed text
  */
 async function hash(text: string) {
-  try {
-    const salt = await bcrypt.genSalt();
-    const hashedText = await bcrypt.hash(text, salt);
+  const salt = await bcrypt.genSalt();
+  const hashedText = await bcrypt.hash(text, salt);
 
-    return hashedText;
-  } catch (err) {
-    console.log(err);
-    return null;
-  }
+  return hashedText;
 }
 
 export { hash };

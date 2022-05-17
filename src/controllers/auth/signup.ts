@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import { prisma } from "@utils/prisma";
 import { signUpBody } from "@interfaces/auth";
 import { defaultProfilePic } from "@utils/img";
+import { hash } from "@utils/hash";
 import { generateOtp } from "@utils/otp";
 import { userCreated } from "@success/auth";
 import { improperEmail, insecurePassword, userExists } from "@errors/auth";
@@ -37,7 +38,7 @@ async function signup(req: Request, res: Response) {
         name,
         scholarId,
         email,
-        password,
+        password: await hash(password),
         dob: new Date(dob),
         img: defaultProfilePic(name),
         branch,
