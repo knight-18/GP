@@ -5,7 +5,7 @@ interface signUpBody {
   scholarId: number;
   email: string;
   password: string;
-  dob: Date;
+  dob: string;
   branch: Branch;
 }
 

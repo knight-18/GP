@@ -26,7 +26,7 @@ function isLoggedIn(req: Request, res: Response, next: NextFunction) {
 }
 
 function isNotLoggedIn(req: Request, res: Response, next: NextFunction) {
-  if (!req.isAuthenticated) {
+  if (!req.isAuthenticated()) {
     next();
   } else {
     res.json(userAlreadyLoggedIn);

@@ -38,7 +38,7 @@ async function signup(req: Request, res: Response) {
         scholarId,
         email,
         password,
-        dob,
+        dob: new Date(dob),
         img: defaultProfilePic(name),
         branch,
         otpValue: value!,
