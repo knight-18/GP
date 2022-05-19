@@ -47,7 +47,7 @@ async function signup(req: Request, res: Response) {
         dob: new Date(dob),
         img: defaultProfilePic(name),
         branch,
-        otpValue: await hash(value),
+        otpValue: value,
         otpExpiry: expiry,
         role: "MENTEE",
       },
