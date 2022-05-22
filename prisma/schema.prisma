@@ -30,6 +30,9 @@ model User {
 
   blocked   Block[] @relation("Blocker")
   blockedBy Block[] @relation("Blockee")
+
+  mentor MentorMentee[] @relation("Mentor")
+  mentee MentorMentee[] @relation("Mentee")
 }
 
 model Article {
@@ -67,6 +70,7 @@ model Comment {
 model ArticleVote {
   id Int @id @default(autoincrement())
 
+  vote      Vote
   articleId Int
   article   Article @relation(fields: [articleId], references: [id])
 }
@@ -74,6 +78,7 @@ model ArticleVote {
 model CommentVote {
   id Int @id @default(autoincrement())
 
+  vote      Vote
   commentId Int
   comment   Comment @relation(fields: [commentId], references: [id])
 }
@@ -88,6 +93,19 @@ model Block {
   blockeeId Int
   blockee   User @relation(fields: [blockeeId], references: [id], name: "Blockee")
 
+}
+
+model MentorMentee {
+
+  id Int @id @default(autoincrement())
+
+  mentorId Int
+  mentor   User @relation(fields: [mentorId], references: [id], name: "Mentor")
+
+  menteeId Int
+  mentee   User @relation(fields: [menteeId], references: [id], name: "Mentee")
+
+  isVerified Boolean @default(false)
 }
 
 enum Branch {
@@ -121,5 +139,12 @@ enum Type {
 
   QNA
   ARTICLE
+
+}
+
+enum Vote {
+
+  UPVOTE
+  DOWNVOTE
 
 }
