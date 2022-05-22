@@ -16,6 +16,7 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^6.3.1",
     "@types/bcrypt": "^5.0.0",
     "@types/cookie-parser": "^1.4.3",
     "@types/cookie-session": "^2.0.44",
@@ -43,6 +44,7 @@
     "start": "node ./dist/src/server.js",
     "dev": "nodemon --exec ts-node ./src/server.ts",
     "build": "tsc",
+    "seed": "ts-node ./src/utils/seed.ts",
     "prepare": "husky install",
     "prisma:pull": "prisma db pull",
     "prisma:generate": "prisma generate",
