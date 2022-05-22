@@ -1,4 +1,4 @@
-import { Branch } from "@prisma/client";
+import { Branch, Role } from "@prisma/client";
 
 interface signUpBody {
   name: string;
@@ -9,4 +9,9 @@ interface signUpBody {
   branch: Branch;
 }
 
-export { signUpBody };
+interface elevatePermissions {
+  email: string;
+  newLevel: Role;
+}
+
+export { signUpBody, elevatePermissions };
