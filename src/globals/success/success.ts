@@ -11,4 +11,11 @@ function success(successMessage: string): JSONResponse {
   };
 }
 
-export { success };
+function successWithData(successData: any): JSONResponse {
+  return {
+    message: successData,
+    success: true,
+  };
+}
+
+export { success, successWithData };

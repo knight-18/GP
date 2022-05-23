@@ -10,7 +10,8 @@
       "@globals/*": ["./src/globals/*"],
       "@controllers/*": ["./src/controllers/*"],
       "@utils/*": ["./src/utils/*"],
-      "@middlewares/*": ["./src/middlewares/*"]
+      "@middlewares/*": ["./src/middlewares/*"],
+      "@typeguards/*": ["./src/globals/typeguards/*"]
     },
 
     /* Projects */

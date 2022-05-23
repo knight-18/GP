@@ -8,4 +8,9 @@ interface JSONSuccess {
   message: string;
 }
 
-export { JSONError, JSONSuccess };
+interface JSONSuccessWithData {
+  success: true;
+  message: any;
+}
+
+export { JSONError, JSONSuccess, JSONSuccessWithData };
